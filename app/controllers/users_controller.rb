@@ -1,4 +1,10 @@
 class UsersController < ApplicationController
+  include UsersHelper
+
+  def index
+    @users = User.all
+  end
+
   def new
     @user = User.new
   end
@@ -8,7 +14,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to new_user_path
+      redirect_to root_path
     else
       render :new
     end
@@ -22,10 +28,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(user_params)
 
-    redirect_to edit_user_path
+    redirect_to root_path
   end
 
-  def user_params
-    params.require(:user).permit(:username, :email, :password)
+  def destroy
+    @user = User.destroy(params[:id])
+
+    redirect_to root_path
   end
 end
