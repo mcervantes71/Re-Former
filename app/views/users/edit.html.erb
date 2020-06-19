@@ -4,8 +4,8 @@
   <%= render partial: 'form' %>
 
   <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this post from being saved:</h2>
+    <div id="error_explanation" class="mt-2">
+      <h2><span class="text-danger"><%= pluralize(@user.errors.count, "error") %></span> prohibited this post from being saved:</h2>
 
       <ul>
         <% @user.errors.full_messages.each do |msg| %>
