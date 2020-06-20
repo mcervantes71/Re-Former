@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  include UsersHelper
-
   def index
     @users = User.all
   end
@@ -38,5 +36,10 @@ class UsersController < ApplicationController
     @user = User.destroy(params[:id])
 
     redirect_to root_path
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:username, :email, :password)
   end
 end
